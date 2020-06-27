@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1593217364 source:e:\cse\c++ practice\vigenere\vigenere\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<string.h>
+	<limits>
+	<cstdlib>
+	<cstdio>
+

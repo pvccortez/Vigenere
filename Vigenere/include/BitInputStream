@@ -1,0 +1,75 @@
+/**
+ * About: The BitIntputStream will read characters from a file, and will fill()
+ * buf with the bit pattern of that character read in. When buf is empty, fill()
+ * will be called. The function readBit() will return the ith bit from buf,
+ * where i depends on how many times readBit() has been called. This will be
+ * used to decompress file compresed by trueCompression().
+ *
+ * Author: Pablo Cortez
+ *
+ * Resources: CSE 100 Discusion Slides
+ */
+#ifndef BUFFER_H
+#define BUFFER_H
+
+#include <istream>
+
+using namespace std;
+
+typedef unsigned char byte;
+
+#define SIZE_OF_BYTE 8
+
+class Buffer
+{
+private:
+    byte buffer; //One byte buffer.
+    int nBits; // number of bits that have written to the buffer.
+    int numToRead; //
+    istream& in; // Reference to input stream to read from.
+
+protected:
+
+public:
+
+    /*
+     * Will initialize the values for the buffer, and takes an istream as the only
+     * parameter. buffer, nBits, numToReadWill all be set to zero as the buffer is
+     * empty.
+     */
+    explicit Buffer(istream is) : in(is)
+    {
+        this->buffer = 0;
+        this->nBits = 0;
+        this->numToRead = 0;
+    };
+
+    // Deconstructor for the buffer
+    virtual ~Buffer();
+
+
+
+    /*
+     * When the buffer is empty, it will read another character from in, and
+     * fill the buffer with bits from the character read in.
+     */
+    void fill();
+
+
+
+    /* Will return 1 or 0, depending if the the ith bit in buff is a zero or
+     * one. The ith bit will depend on how many time readBit is called. When all
+     * the bits in buf have been read, it will call fill to refill buf.
+     */
+    unsigned int readBit();
+
+
+
+
+
+
+
+
+};
+
+#endif // BUFFER_H
